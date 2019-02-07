@@ -66,12 +66,12 @@ task('magento:maintenance:disable', function () {
 
 desc('Upgrade magento database');
 task('magento:upgrade:db', function () {
-    run("{{bin/php}} {{release_path}}/bin/magento setup:upgrade --keep-generated");
+    run("{{bin/php}} {{deploy_path}}/current/bin/magento setup:upgrade --keep-generated");
 });
 
 desc('Upgrade magento database if needed');
 task('magento:upgrade:db-ifneeded', function () {
-    $mage = '{{bin/php}} {{release_path}}/bin/magento';
+    $mage = '{{bin/php}} {{deploy_path}}/current/bin/magento';
     run("$mage setup:db:status -q || $mage maintenance:enable && $mage setup:upgrade --keep-generated && $mage maintenance:disable");
 });
 
